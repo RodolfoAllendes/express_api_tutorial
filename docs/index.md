@@ -50,3 +50,7 @@ added 12 packages, and audited 71 packages in 5s
 
 found 0 vulnerabilities
 ```
+
+The basic configuration of TypeScript is made through the definition of a `tsconfig.json` file.
+
+Also, in order to configure the commands we will use for the compilation and deployment of the application, we add some additional configuration to our `package.json` file.

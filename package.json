@@ -1,4 +1,17 @@
 {
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Basic API with Node.js and Express.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/app.js",
+    "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rodolfo Allendes",
+  "license": "MIT",
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
