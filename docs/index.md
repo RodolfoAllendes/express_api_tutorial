@@ -135,3 +135,26 @@ export function ls(): Promise<any>{
 ```
 
 Notice that, given the asynchronous nature of the `spawn` method, we define the return value of the function as a Promise that resolves once the command is finished. The promise is rejected when an error occurs.
+
+Then, we modify the `app.ts` file in order to link a new route [localhost:3000/ls/](http://localhost:3000/ls) to the `ls()` function implemented in `utils.ts`. Once the function resolves, then the server will reply with the corresponding message to the client.
+
+```javascript
+import { utils } from './utils'
+
+app.get('/ls', (_: Request, res: Response) => {
+	utils.ls()
+	.then(msg => {
+		res.status(200).json(msg);
+	})
+	.catch(error => {
+		res.status(409).json({error: error});
+	});
+});
+```
+
+On selecting that route, the browser should display the contents of the folder where the Express API is being implemented. If unable to use a browser, you can also try the route is working by using curl as follows:
+
+```console
+foo@bar:~$ curl -X GET http://localhost:3000/ls/
+"total 104K\ndrwxrwxr-x  2 rallendes rallendes 4.0K  8月 20 01:16 dist\ndrwxrwxr-x  2 rallendes rallendes 4.0K  8月 19 23:00 docs\ndrwxrwxr-x 95 rallendes rallendes 4.0K  8月 19 23:39 node_modules\n-rw-rw-r--  1 rallendes rallendes  641  8月 19 23:47 package.json\n-rw-rw-r--  1 rallendes rallendes  74K  8月 19 23:39 package-lock.json\n-rw-rw-r--  1 rallendes rallendes   22  8月 19 22:43 README.md\ndrwxrwxr-x  2 rallendes rallendes 4.0K  8月 20 01:16 src\n-rw-rw-r--  1 rallendes rallendes  973  8月 19 23:33 tsconfig.json\n"
+```
