@@ -7,3 +7,33 @@
 > Instructions to install nvm can be found on their GitHub repository: [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm). Notice that, since we are using nvm , there is a `.nvmrc` file at the root of this repository, which defines the  version of Node that we will be using for this project.
 >
 > You might need to run `nvm install lts/gallium`.
+
+## Express.js installation
+
+```console
+foo@bar:~$ nvm exec npm install express
+Found '~/express_api_tutorial/.nvmrc' with version <lts/gallium>
+Running node v16.20.2 (npm v8.19.4)
+
+added 58 packages, and audited 59 packages in 3s
+
+found 0 vulnerabilities
+```
+
+> **Warning**
+>
+> After installing Express.js, we will also include a `.gitignore` file in our project, to avoid loading to GitHub the whole `node_modules` folder.
+
+## TypeScript installation
+
+We will use TypeScript (rather than plain Javascript) to code the Express server, so for that, we need to install the `typescript` package and the TypeScript type definitions used with Node and Express.
+
+```console
+foo@bar:~$ nvm exec npm install typescript @types/express @types/node --save-dev
+Found '~/express_api_tutorial/.nvmrc' with version <lts/gallium>
+Running node v16.20.2 (npm v8.19.4)
+
+added 12 packages, and audited 71 packages in 5s
+
+found 0 vulnerabilities
+```
