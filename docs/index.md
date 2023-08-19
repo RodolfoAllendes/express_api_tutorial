@@ -24,6 +24,19 @@ found 0 vulnerabilities
 >
 > After installing Express.js, we will also include a `.gitignore` file in our project, to avoid loading to GitHub the whole `node_modules` folder.
 
+Additional to Express, we will also install `cors` and `nodemon`.
+
+```console
+foo@bar:~$ nvm exec npm install nodemon --save-dev
+added 33 packages, and audited 104 packages in 9s
+
+foo@bar:~$ nvm exec npm install cors
+added 2 packages, and audited 106 packages in 669ms
+
+foo@bar:~$ nvm exec npm install @types/cors --save-dev
+added 1 package, and audited 107 packages in 2s
+```
+
 ## TypeScript installation
 
 We will use TypeScript (rather than plain Javascript) to code the Express server, so for that, we need to install the `typescript` package and the TypeScript type definitions used with Node and Express.
