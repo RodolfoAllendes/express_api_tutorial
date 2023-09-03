@@ -20,6 +20,16 @@ app.get('/ls', (_: Request, res: Response) => {
 	});
 });
 
+app.get('/greet/', (req: Request, res: Response) => {
+	let name = req.params.name;
+	res.status(200).json(`Well hello there.`);
+});
+
+app.get('/greet/:name/', (req: Request, res: Response) => {
+	let name = req.params.name;
+	res.status(200).json(`Greetings ${name}`);
+});
+
 app.listen(3000, () => {
 	console.log(`app is listening on port 3000`);
 });

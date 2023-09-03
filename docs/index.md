@@ -158,3 +158,5 @@ On selecting that route, the browser should display the contents of the folder w
 foo@bar:~$ curl -X GET http://localhost:3000/ls/
 "total 104K\ndrwxrwxr-x  2 rallendes rallendes 4.0K  8月 20 01:16 dist\ndrwxrwxr-x  2 rallendes rallendes 4.0K  8月 19 23:00 docs\ndrwxrwxr-x 95 rallendes rallendes 4.0K  8月 19 23:39 node_modules\n-rw-rw-r--  1 rallendes rallendes  641  8月 19 23:47 package.json\n-rw-rw-r--  1 rallendes rallendes  74K  8月 19 23:39 package-lock.json\n-rw-rw-r--  1 rallendes rallendes   22  8月 19 22:43 README.md\ndrwxrwxr-x  2 rallendes rallendes 4.0K  8月 20 01:16 src\n-rw-rw-r--  1 rallendes rallendes  973  8月 19 23:33 tsconfig.json\n"
 ```
+
+In the [Next Section](./crud_api.md), we provide details on how to extend the `HTTP Requests` that our newly created server could handle.
