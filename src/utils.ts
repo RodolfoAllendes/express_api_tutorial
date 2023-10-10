@@ -42,8 +42,22 @@ export namespace utils{
 		return result;
 	}
 
-	// export function addUser(id: number, name: string): Promise<any>{
-	// 	return new Promise(async(resolve, reject))
-	// }
+	export function addUser(id: number, name: string): Promise<any>{
+		const result = new Promise(async(resolve, reject) =>{
+			try{
+				let text = await fs.readFile('./data/users.json', 'utf-8');
+				let json = JSON.parse(text);
+				console.log('json1', json);
+				json.users.push({id, name});
+				console.log('json2', json);
+				await fs.writeFile('./data/users.json', JSON.stringify(json));
+				resolve('New user added');
+			} catch(e: any){
+				const msg =('Failed to add user');
+				reject(msg);
+			}
+		});
+		return result;
+	}
 
 }

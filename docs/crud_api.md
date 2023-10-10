@@ -71,7 +71,50 @@ export function users(): Promise<any>{
 
 The HTTP `POST` method sends data to the server. A detailed definition of the POST method can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
+For example, it is possible to use a `POST` route to add new users to the file we previously showed. We start by adding a method to handle the new route to the `routes/users.ts` file:
+```javascript
+router.post('/new', (req: Request, res: Response) => {
+	utils.addUser(req.body.id, req.body.name)
+	.then(msg => {
+		console.log(msg);
+		res.status(200).json(msg);
+	})
+	.catch(error => {
+		console.log(error);
+		res.status(300).json({error: error.msg});
+	});
+});
+```
+Notice that wee make use of the `body` of the request object. The two properties retrieved from the request (the id and name of the new user), are in turn used as parameters for the function that actually performs the addition in `utils.ts`.
 
+```javascript
+export function addUser(id: number, name: string): Promise<any>{
+	const result = new Promise(async(resolve, reject) =>{
+		try{
+			let text = await fs.readFile('./data/users.json', 'utf-8');
+			let json = JSON.parse(text);
+			console.log('json1', json);
+			json.users.push({id, name});
+			console.log('json2', json);
+			await fs.writeFile('./data/users.json', JSON.stringify(json));
+			resolve('New user added');
+		} catch(e: any){
+			const msg =('Failed to add user');
+			reject(msg);
+		}
+	});
+	return result;
+}
+```
+Finally, we can a curl command to test our implementation works. For example, if we wanted to add a user with id: 3, and name Taro, we can do so by writing the following command:
+
+```console
+curl -X POST http://localhost:3000/users/new \
+	-H "Content-Type: application/json" \
+	-d '{"id": 3, "name": "Taro"}' 
+```
+
+If the addition of the new user is performed correctly, you should also be able to verify it by calling the `localhost:3000/users/` route on your browser.
 
 ## HTTP PUT
 

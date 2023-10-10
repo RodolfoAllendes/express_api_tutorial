@@ -15,4 +15,16 @@ router.get('/', (_: Request, res: Response) => {
 	});
 });
 
+router.post('/new', (req: Request, res: Response) => {
+	utils.addUser(req.body.id, req.body.name)
+	.then(msg => {
+		console.log(msg);
+		res.status(200).json(msg);
+	})
+	.catch(error => {
+		console.log(error);
+		res.status(300).json({error: error.msg});
+	});
+});
+
 export default router;
