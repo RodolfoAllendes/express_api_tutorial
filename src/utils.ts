@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import * as fs from 'node:fs/promises';
 
 export namespace utils{
 
@@ -27,5 +28,22 @@ export namespace utils{
 
 		});
 	}
+
+	export function users(): Promise<any>{
+		const result: Promise<any> = new Promise(async(resolve, reject) => {
+			try{
+				const msg = await fs.readFile('./data/users.json', 'utf-8');
+				resolve(JSON.parse(msg));
+			} catch (e: any) {
+				const msg = 'Users not found;';
+				reject(msg);
+			}
+		});
+		return result;
+	}
+
+	// export function addUser(id: number, name: string): Promise<any>{
+	// 	return new Promise(async(resolve, reject))
+	// }
 
 }
